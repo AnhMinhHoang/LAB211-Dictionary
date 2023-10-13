@@ -25,11 +25,7 @@ public class DictionaryRepository implements IDictionaryRepository {
             Dictionary new_Word = new Dictionary();
             if (!DictionaryDao.Instance().addWord(dictionary, new_Word)) {
                 System.out.println(Prompt.promptExist);
-                choice = valid.inputStringMatch("Update mean?(Y/N)", "[YNyn]");
-                if (choice.equals("Y")) {
-                    DictionaryDao.Instance().updateWordd(dictionary, dictionary.get(new_Word.getEnWord()).getEnWord());
-                    System.out.println(Prompt.promptSuccess);
-                }
+                DictionaryDao.Instance().updateWordd(dictionary, dictionary.get(new_Word.getEnWord()).getEnWord());
             } else {
                 System.out.println(Prompt.promptSuccess);
             }

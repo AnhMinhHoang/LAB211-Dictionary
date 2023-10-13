@@ -5,6 +5,7 @@
 package data_access;
 
 import common.Validation;
+import content.Prompt;
 import java.util.HashMap;
 import model.Dictionary;
 
@@ -41,7 +42,11 @@ public class DictionaryDao {
     }
 
     public void updateWordd(HashMap<String, Dictionary> dictionary, String enWord) {
-        dictionary.get(enWord).setVnWord(valid.inputString("Enter Vietnamese"));
+        String choice = valid.inputStringMatch("Update mean?(Y/N)", "[YNyn]");
+        if (choice.equals("Y")) {
+            dictionary.get(enWord).setVnWord(valid.inputString("Enter Vietnamese"));
+            System.out.println(Prompt.promptSuccess);
+        }
     }
 
     public boolean deleteWord(HashMap<String, Dictionary> dictionary) {
